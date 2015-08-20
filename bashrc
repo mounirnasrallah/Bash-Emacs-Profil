@@ -1,32 +1,17 @@
 
-export EDITOR='emacs -nw'
-export HISTSIZE=1000
-export MAIL="/u/all/${USER}/mail/${USER}"
-export PAGER='more'
 
-export SAVEHIST=100000
-export WATCH='all'
-export SHELL='/bin/bash'
-export PATH="~/bin:$PATH"
+### Alias ###
 
-if [ -f /Applications/Emacs.app/Contents/MacOS/Emacs ]; then
-    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-else
-    alias emacs='emacs -nw'
-fi
-
-alias authors='echo "***** NASR ALLAH Mounir <nasrallah.mounir@gmail.com>" > AUTHORS'
-alias cc='gcc -Wextra -Wall -Wuninitialized -Wunused -std=c99 -pedantic'
-alias gnus='emacs -f gnus'
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+alias upmc='ssh -X 3001324@ssh.ufr-info-p6.jussieu.fr'
+alias debian='ssh -X root@192.168.56.101'
+alias ubuntu='ssh -X root@192.168.56.102'
+alias online='195.154.109.132'
 alias reload='source ~/.bashrc'
 
-alias debian='ssh -X root@192.168.56.101'
-alias openbsd='ssh -X root@192.168.56.102'
-alias freebsd='ssh root@88.191.132.132'
-alias kali='ssh root@88.191.132.132'
 
 
-#############        PS1          ################
+### GIT ###
 
 __gitdir ()
 {
@@ -137,10 +122,6 @@ __git_ps1 ()
 
 export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHSTATE=1
 
-#export PS1='\033[31m_______________________________________________________________________________\n|\033[37m\u @ \h: \W \[\033[1;33m\]($?)\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \[\e[0m\]\033[31m \n|\033[0m\[\033[1;37m\]=>\[\e[0m\] '
 
-export PS1='\[\033[0;37m\]\u@\h:\[\033[0;33m\]\W\[\033[0m\]\[\033[1;32m\]$(__git_ps1)\[\033[0m\] \$ '
-
-# export PS1=' _______________________________________________________________________________\n| \W @ \h: \u \[\033[1;33m\]($?) \[\e[0m\]\n| \[\033[1;33m\]=>\[\e[0m\] '
-
-
+### PS1 ###
+export PS1='\n\[\033[1;33m\]________________________________________________________________________________\n|\[\033[1;37m\] \W @ \h (\u) \[\033[1;32m\]$(__git_ps1) \n\[\033[1;33m\]| ==> \[\e[0m\]'
