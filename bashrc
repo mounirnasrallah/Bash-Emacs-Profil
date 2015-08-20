@@ -1,5 +1,3 @@
-
-
 ### Alias ###
 
 alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
@@ -125,3 +123,6 @@ export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHST
 
 ### PS1 ###
 export PS1='\n\[\033[1;33m\]________________________________________________________________________________\n|\[\033[1;37m\] \W @ \h (\u) \[\033[1;32m\]$(__git_ps1) \n\[\033[1;33m\]| ==> \[\e[0m\]'
+
+# OPAM configuration
+. /Users/mouns/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
