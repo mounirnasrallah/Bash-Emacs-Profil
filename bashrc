@@ -1,10 +1,8 @@
 ### Alias ###
 
-alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias upmc='ssh -X 3001324@ssh.ufr-info-p6.jussieu.fr'
 alias debian='ssh -X root@192.168.56.101'
 alias ubuntu='ssh -X root@192.168.56.102'
-alias online='195.154.109.132'
 alias reload='source ~/.bashrc'
 
 

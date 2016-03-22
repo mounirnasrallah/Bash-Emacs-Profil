@@ -1,5 +1,6 @@
 
 ;; Path
+(add-to-list 'load-path "/Users/mouns/.emacs.d/llvm")
 (add-to-list 'load-path "/Users/mouns/.emacs.d/lisp")
 (add-to-list 'load-path "/Users/mouns/.opam/system/share/emacs/site-lisp")
 
@@ -81,7 +82,7 @@
 
 
 
-(setq user-mail-address "mounir@nasrallah.co")
+(setq user-mail-address "mounir.nasrallah@centralesupelec.fr")
 (setq user-full-name "Mounir NASR ALLAH")
 (setq gnus-article-date-headers 'original)
 (setq gnus-article-update-date-headers nil)
@@ -108,3 +109,25 @@
   (add-to-list 'company-backends 'merlin-company-backend))
 
 (add-hook 'merlin-mode-hook 'company-mode)
+
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(require 'llvm-mode)
+(require 'tablegen-mode)
+
+
+(require 'ggtags)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+	              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+		                    (ggtags-mode 1))))
+
+(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+
+(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
