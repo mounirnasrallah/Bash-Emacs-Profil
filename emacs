@@ -1,4 +1,12 @@
 
+(load-theme 'monokai t t)
+(enable-theme 'monokai)
+
+(setq coq-prog-name "/Users/mouns/.opam/4.02.3/bin/coqtop")
+
+;; Open .v files with Proof General's Coq mode
+(load "~/.emacs.d/lisp/PG/generic/proof-site")
+
 ;; Path
 (add-to-list 'load-path "/Users/mouns/.emacs.d/llvm")
 (add-to-list 'load-path "/Users/mouns/.emacs.d/lisp")
@@ -14,6 +22,7 @@
   (package-initialize))
 
 ;; Tuareg
+(load "/Users/mouns/.opam/4.02.3/share/emacs/site-lisp/tuareg-site-file")
 (setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
 (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
 (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
@@ -30,17 +39,6 @@
 ;; OPAM
 (setq opam-share (substring (shell-command-to-string "opam config var share") 0 -1))
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-
-
-
-;; Colored buffers
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-
 
 
 ;; Shebangs
@@ -98,20 +96,16 @@
 (put 'upcase-region 'disabled nil)
 
 
+;; Add opam emacs directory to the load-path
 (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
+;; Load merlin-mode
 (require 'merlin)
+;; Start merlin on ocaml files
+(add-hook 'tuareg-mode-hook 'merlin-mode t)
+(add-hook 'caml-mode-hook 'merlin-mode t)
 
-(add-hook 'tuareg-mode-hook 'merlin-mode)
-(setq merlin-use-auto-complete-mode 'easy)
 
-(with-eval-after-load 'company
-  (add-to-list 'company-backends 'merlin-company-backend))
-
-(add-hook 'merlin-mode-hook 'company-mode)
-
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'llvm-mode)
 (require 'tablegen-mode)
@@ -131,3 +125,17 @@
 (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
 
 (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("4294fa1b78ee65d076a1302f6ed34d42e34f637aae918b7691835adef69bd4cc" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
