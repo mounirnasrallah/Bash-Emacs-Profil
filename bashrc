@@ -40,7 +40,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
 
-if which -s gls; then
+if which gls; then
   alias ls='gls --color --indicator-style=slash --group-directories-first'
     eval "$(gdircolors ~/.dir_colors)"
     else
